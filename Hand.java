@@ -1,9 +1,9 @@
 public class Hand {
     private boolean move;
-    private int before; // 0 Xy~X-1
+    private int before; 
     private int after;
-    private int pieceNum;       // 
-    private int catchPieceType; //  0
+    private int pieceNum;       
+    private int catchPieceType; 
     private boolean promoted;
     
     Hand(){}
