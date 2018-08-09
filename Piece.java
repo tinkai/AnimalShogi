@@ -1,8 +1,8 @@
 public class Piece implements PieceID, PieceName, PieceControl {
     private int id;
     private String name;   
-    private int control[];  // 利き
-    private int group;  // 先手後手どちらの持ち駒か
+    private int control[]; 
+    private int group;  
 
     Piece() {
     }
@@ -73,7 +73,6 @@ public class Piece implements PieceID, PieceName, PieceControl {
         return this.group;
     }
 
-    // コマの変化(ヒヨコ・ニワトリ用)
     public void promoted() {
         this.id++;
         if (this.id == NIWA) {

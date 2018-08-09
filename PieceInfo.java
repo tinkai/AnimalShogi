@@ -1,49 +1,49 @@
-// ÉRÉ}ÇÃî‘çÜ
 interface PieceID {
-        int OUT = -1;
-        int EMPTY = 0;
-        int RION = 1;
-        int KIRIN = 2;
-        int ZOU = 3;
-        int HIYO = 4;
-        int NIWA = 5;
-        int ANEMY = 5;
-        int ERION = RION + ANEMY;
-        int EKIRIN = KIRIN + ANEMY;
-        int EZOU = ZOU + ANEMY;
-        int EHIYO = HIYO + ANEMY;
-        int ENIWA = NIWA + ANEMY;
-    }
-    // ÉRÉ}ÇÃñºëO
-    interface PieceName {
-        String RNAME = "Å¢Éâ";
-        String KNAME = "Å¢ÉL";
-        String ZNAME = "Å¢É]";
-        String HNAME = "Å¢Éq";
-        String NNAME = "Å¢Éj";
-        String ERNAME = "Å•Éâ";
-        String EKNAME = "Å•ÉL";
-        String EZNAME = "Å•É]";
-        String EHNAME = "Å•Éq";
-        String ENNAME = "Å•Éj";
-    }
-    interface PieceLongName {
-        String RLNAME = "ÉâÉCÉIÉì";
-        String KLNAME = "ÉLÉäÉì";
-        String ZLNAME = "É]ÉE";
-        String HLNAME = "ÉqÉàÉR";
-        String NLNAME = "ÉjÉèÉgÉä";
-    }
-    // ÉRÉ}ÇÃóòÇ´
-    interface PieceControl {
-        int RCON[] = {-6, -5, -4, -1, 0, 1, 4, 5, 6};
-        int KCON[] = {0, -5, 0, -1, 0, 1, 0, 5, 0};
-        int ZCON[] = {-6, 0, -4, 0, 0, 0, 4, 0, 6};
-        int HCON[] = {0, 0, 0, -1, 0, 0, 0, 0, 0};
-        int NCON[] = {-6, -5, 0, -1, 0, 1, 4, 5, 0};
-        int ERCON[] = {-6, -5, -4, -1, 0, 1, 4, 5, 6};
-        int EKCON[] = {0, -5, 0, -1, 0, 1, 0, 5, 0};
-        int EZCON[] = {-6, 0, -4, 0, 0, 0, 4, 0, 6};
-        int EHCON[] = {0, 0, 0, 0, 0, 1, 0, 0, 0};
-        int ENCON[] = {0, -5, -4, -1, 0, 1, 0, 5, 6};
-    }
+    int OUT = -1;
+    int EMPTY = 0;
+    int RION = 1;
+    int KIRIN = 2;
+    int ZOU = 3;
+    int HIYO = 4;
+    int NIWA = 5;
+    int ANEMY = 5;
+    int ERION = RION + ANEMY;
+    int EKIRIN = KIRIN + ANEMY;
+    int EZOU = ZOU + ANEMY;
+    int EHIYO = HIYO + ANEMY;
+    int ENIWA = NIWA + ANEMY;
+}
+
+interface PieceName {
+    String RNAME = "‚ñ≥„É©";
+    String KNAME = "‚ñ≥„Ç≠";
+    String ZNAME = "‚ñ≥„Çæ";
+    String HNAME = "‚ñ≥„Éí";
+    String NNAME = "‚ñ≥„Éã";
+    String ERNAME = "‚ñº„É©";
+    String EKNAME = "‚ñº„Ç≠";
+    String EZNAME = "‚ñº„Çæ";
+    String EHNAME = "‚ñº„Éí";
+    String ENNAME = "‚ñº„Éã";
+}
+
+interface PieceLongName {
+    String RLNAME = "„É©„Ç§„Ç™„É≥";
+    String KLNAME = "„Ç≠„É™„É≥";
+    String ZLNAME = "„Çæ„Ç¶";
+    String HLNAME = "„Éí„É®„Ç≥";
+    String NLNAME = "„Éã„ÉØ„Éà„É™";
+}
+
+interface PieceControl {
+    int RCON[] = { -6, -5, -4, -1, 0, 1, 4, 5, 6 };
+    int KCON[] = { 0, -5, 0, -1, 0, 1, 0, 5, 0 };
+    int ZCON[] = { -6, 0, -4, 0, 0, 0, 4, 0, 6 };
+    int HCON[] = { 0, 0, 0, -1, 0, 0, 0, 0, 0 };
+    int NCON[] = { -6, -5, 0, -1, 0, 1, 4, 5, 0 };
+    int ERCON[] = { -6, -5, -4, -1, 0, 1, 4, 5, 6 };
+    int EKCON[] = { 0, -5, 0, -1, 0, 1, 0, 5, 0 };
+    int EZCON[] = { -6, 0, -4, 0, 0, 0, 4, 0, 6 };
+    int EHCON[] = { 0, 0, 0, 0, 0, 1, 0, 0, 0 };
+    int ENCON[] = { 0, -5, -4, -1, 0, 1, 0, 5, 6 };
+}

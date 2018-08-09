@@ -40,7 +40,7 @@ public class Board implements PieceID, PieceLongName {
         return this.posi[posi];
     }
 
-    // ”Õ–ÊƒRƒ}ŠÖŒW
+    // ç›¤é¢ã‚³ãƒé–¢ä¿‚
     public Piece getPiece(int posi) {
         return this.piecePosi[posi];
     }
@@ -69,7 +69,7 @@ public class Board implements PieceID, PieceLongName {
         System.out.println(" -------------");
     }
 
-    // ”Õ“à‚ÌƒRƒ}”»’è 
+    // ç›¤å†…ã®ã‚³ãƒåˆ¤å®š
     public boolean isPiece(int posi) {
         if (this.posi[posi] > EMPTY) return true;
         return false;
@@ -85,7 +85,7 @@ public class Board implements PieceID, PieceLongName {
         return false;
     }
 
-    // ‚¿‹îŠÖŒW
+    // æŒã¡é§’é–¢ä¿‚
     public boolean isHasPiece(int group, int n) {
         if (this.hasPiece[group][n] > 0) return true;
         return false;
@@ -102,21 +102,21 @@ public class Board implements PieceID, PieceLongName {
         showHasPiece(1);
     }
     private void showHasPiece(int group) {
-        System.out.println("Player" + (group+1) + "‚Ì‚¿‹î");
+        System.out.println("Player" + (group+1) + "ã®æŒã¡é§’");
         for (int i = 1; i <= HIYO; i++) {
             if (this.hasPiece[group][i] > 0) {
                 switch (i) {
                 case RION:
-                    System.out.print(i + "." + RLNAME + this.hasPiece[group][i] + "‚Â ");
+                    System.out.print(i + "." + RLNAME + this.hasPiece[group][i] + "ã¤ ");
                     break;
                 case KIRIN:
-                    System.out.print(i + "." + KLNAME + this.hasPiece[group][i] + "‚Â ");
+                    System.out.print(i + "." + KLNAME + this.hasPiece[group][i] + "ã¤ ");
                     break;
                 case ZOU:
-                    System.out.print(i + "." + ZLNAME + this.hasPiece[group][i] + "‚Â ");
+                    System.out.print(i + "." + ZLNAME + this.hasPiece[group][i] + "ã¤ ");
                     break;
                 case HIYO:
-                    System.out.print(i + "." + HLNAME + this.hasPiece[group][i] + "‚Â ");
+                    System.out.print(i + "." + HLNAME + this.hasPiece[group][i] + "ã¤ ");
                     break;
                 }
             }
@@ -124,7 +124,7 @@ public class Board implements PieceID, PieceLongName {
         System.out.println();
     }
 
-    // ƒ^[ƒ“ŠÖŒW
+    // ã‚¿ãƒ¼ãƒ³é–¢ä¿‚
     public int getTurn() {
         return this.turn;
     }
@@ -133,15 +133,15 @@ public class Board implements PieceID, PieceLongName {
         else this.turn = 0;
     }
     public void showTurn() {
-        if (this.turn == 0) System.out.println("Player1‚Ìƒ^[ƒ“");
-        else System.out.println("Player2‚Ìƒ^[ƒ“");
+        if (this.turn == 0) System.out.println("Player1ã®ã‚¿ãƒ¼ãƒ³");
+        else System.out.println("Player2ã®ã‚¿ãƒ¼ãƒ³");
     }
 
-    // ƒ^[ƒ“”ŠÖŒW
+    // ã‚¿ãƒ¼ãƒ³æ•°é–¢ä¿‚
     public void addTurnN() {
         this.turnN++;
     }
     public void showTurnN() {
-        System.out.println("ƒ^[ƒ“” " + this.turnN);
+        System.out.println("ã‚¿ãƒ¼ãƒ³æ•° " + this.turnN);
     }
 }

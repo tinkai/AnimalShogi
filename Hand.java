@@ -8,11 +8,11 @@ public class Hand {
     
     Hand(){}
 
-    public boolean getMove() {
+    public boolean isMove() {
         return this.move;
     }
     public void setMove(boolean b) {
-        this.promoted = b;
+        this.move = b;
     }
     public int getBefore() {
         return this.before;

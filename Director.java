@@ -10,15 +10,15 @@ public class Director implements PieceID{
         this.p1 = new HumanPlayer(0);
         this.p2 = new HumanPlayer(1);
         this.board = new Board();
-        System.out.println("Player1(0)(1)I");
+        System.out.println("Player1の先手(0)後手(1)を選んでください");
         Scanner scanner = new Scanner(System.in);
         int turn = scanner.nextInt();
         if (turn == 1) this.board.changeTurn();
     }
 
     public void game() {
-        System.out.println("Q[Jn");
-        System.out.println("");
+        System.out.println("ゲームを開始します");
+        System.out.println("初期盤面");
         this.board.showTurnN();
         this.board.showTurn();
         this.board.showPosi();
@@ -41,12 +41,12 @@ public class Director implements PieceID{
 
     private void playerTurn(Player p) {
         while(true) {
-            p.turn();   // 
+            p.turn();   // 操作の入力
             Hand hand = p.getHand();
             int before = hand.getBefore();
             int after = hand.getAfter();
             if (before == -1) {
-                System.out.println("XyH");
+                System.out.println("スペルあっとる？");
                 continue;
             }
             /*if (p.getHand().getMove().equals("show")) {
@@ -56,8 +56,8 @@ public class Director implements PieceID{
                 continue;
             }*/
             if (!decSasite(p)) continue;
-            if (hand.getMove()) { // 
-                if (this.board.isAnemy(p.getGroup(), after)) { // G
+            if (hand.isMove()) {
+                if (this.board.isAnemy(p.getGroup(), after)) { 
                     hand.setCatchPieceType(this.board.getPiece(after).getPieceType());
                     this.board.addHasPiece(p.getGroup(), this.board.getPiece(after).getPieceType());
                 } else {
@@ -72,7 +72,7 @@ public class Director implements PieceID{
                 }
                 this.board.movePiece(before, after);
                 break;
-            } else if (!hand.getMove()) { // 
+            } else if (!hand.isMove()) {
                 this.board.setPiece(p.getGroup(), hand.getPieceNum(), after);
                 this.board.subHasPiece(p.getGroup(), hand.getPieceNum());
                 break;
@@ -82,32 +82,32 @@ public class Director implements PieceID{
 
     private boolean decSasite(Player p) {
         if (isOut(p)) {
-            System.out.println("OwH");
+            System.out.println("盤外を指定していませんか？");
             return false; 
         }
         Hand hand = p.getHand();
         int before = hand.getBefore();
         int after = hand.getAfter();
-        if (hand.getMove()) {
-            if (!this.board.isAlly(p.getGroup(), before)) {   // ����
-                System.out.println("H");
+        if (hand.isMove()) {
+            if (!this.board.isAlly(p.getGroup(), before)) {
+                System.out.println("自分の駒？");
                 return false;
-            } else if (!this.board.getPiece(before).isControl(before, after)) {  // 
-                System.out.println("I");
+            } else if (!this.board.getPiece(before).isControl(before, after)) { 
+                System.out.println("移動できないですよ！");
                 return false;
-            } else if (this.board.isAlly(p.getGroup(), after)) { // 
-                System.out.println("");
+            } else if (this.board.isAlly(p.getGroup(), after)) { 
+                System.out.println("移動先に味方がいますよ");
                 return false;
             }
-        } else if (!hand.getMove()) {
+        } else if (!hand.isMove()) {
             if (hand.getPieceNum() <= 0 || hand.getPieceNum() > HIYO) {
-                System.out.println("H");
+                System.out.println("番号を間違えてませんか？");
                 return false;
             } else if (!this.board.isHasPiece(p.getGroup(), hand.getPieceNum())) {
-                System.out.println("H");
+                System.out.println("持ち駒に持っていますか？");
                 return false;
             } else if (this.board.isPiece(after)) {
-                System.out.println("u��");
+                System.out.println("置く場所に駒がありますよ");
                 return false;
             }
         }
@@ -117,24 +117,22 @@ public class Director implements PieceID{
         int after = p.getHand().getAfter();
         int before = p.getHand().getBefore();
         if (after < 0 || after > 25 || this.board.getPosi(after) == -1) return true;
-        if (p.getHand().getMove()) {
+        if (p.getHand().isMove()) {
             if (before < 0 || before > 25 || this.board.getPosi(before) == -1) return true;
         } 
         return false;
     }
 
-    // // 
     private boolean isWin(int turn) {
         if (this.board.isHasPiece(turn, RION)) {
-            System.out.println("CII");
+            System.out.println("ライオンをとりました！");
             return true;
         } else if (isTry(turn)) {
-            System.out.println("gCI");
+            System.out.println("トライ！");
             return true;
         }
         return false;
     }
-    // gC
     private boolean isTry(int turn) {
         int y = 1 + 3*turn;
         for (int x = 5; x <= 15; x += 5) {
@@ -144,7 +142,6 @@ public class Director implements PieceID{
         }
         return false;
     }
-    // GR}
     private boolean isAnemyControl(int turn, int posi) {
         for (int y = -1; y <= 1; y++) {
             for (int x = -5; x <= 5; x += 5) {
@@ -154,7 +151,7 @@ public class Director implements PieceID{
         return false;
     }
     private void showWinner() {
-        System.out.println("Player" + (this.board.getTurn()+1) + "!!!");
+        System.out.println("勝ったのはPlayer" + (this.board.getTurn()+1) + "!!!");
     }
     
 }
