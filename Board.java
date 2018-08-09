@@ -48,6 +48,10 @@ public class Board implements PieceID, PieceLongName {
         this.posi[posi] = n + group*ANEMY;
         this.piecePosi[posi] = new Piece(n + group*ANEMY, group);
     }
+    public void removePiece(int posi) {
+        this.posi[posi] = EMPTY;
+        this.piecePosi[posi] = null;
+    }
     public void movePiece(int before, int after) {
         this.posi[after] = this.posi[before];
         this.piecePosi[after] = this.piecePosi[before];
@@ -140,6 +144,9 @@ public class Board implements PieceID, PieceLongName {
     // ターン数関係
     public void addTurnN() {
         this.turnN++;
+    }
+    public void subTurnN() {
+        this.turnN--;
     }
     public void showTurnN() {
         System.out.println("ターン数 " + this.turnN);

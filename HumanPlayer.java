@@ -6,15 +6,26 @@ public class HumanPlayer extends Player {
     }
 
     public void turn() {
-        System.out.println("指し手を入力してください 移動(move), 打ち込み(drop), 盤面表示(show), 一手戻る(undo)");
+        System.out.println("指し手を入力してください 移動(move), 打ち込み(drop), 盤面表示(show), 1手戻る(undo), 2手戻る(undo2)");
         Scanner scanner = new Scanner(System.in);
         String move = scanner.next();
-        if (move.equals("move")) move();
-        else if (move.equals("drop")) drop();
-        else this.hand.setBefore(-1);;
+        switch (move) {
+        case "move" :
+            move(); break;
+        case "drop" :
+            drop(); break;
+        case "show" :
+            this.hand.setMove(2); break;
+        case "undo" :
+            this.hand.setMove(3); break;
+        case "undo2" :
+            this.hand.setMove(4); break;
+        default :
+            this.hand.setMove(-1);
+        }
     }
     private void move() {
-        this.hand.setMove(true);
+        this.hand.setMove(0);
         System.out.println("移動前と移動後の番地を指定してください 例：2 3 2 2");
         Scanner scanner = new Scanner(System.in);
         int forX = scanner.nextInt();
@@ -25,7 +36,7 @@ public class HumanPlayer extends Player {
         this.hand.setAfter(changeOneDim(toX, toY));
     }
     private void drop() {
-        this.hand.setMove(false);
+        this.hand.setMove(1);
         this.hand.setBefore(0);
         this.hand.setCatchPieceType(0);
         this.hand.setPromoted(false);

@@ -1,5 +1,5 @@
 public class Hand {
-    private boolean move;
+    private int move;   // 0からmove, drop, show, undo, undo2
     private int before; 
     private int after;
     private int pieceNum;       
@@ -7,12 +7,20 @@ public class Hand {
     private boolean promoted;
     
     Hand(){}
+    Hand(Hand hand) {
+        this.move = hand.getMove();
+        this.before = hand.getBefore();
+        this.after = hand.getAfter();
+        this.pieceNum = hand.getPieceNum();
+        this.catchPieceType = hand.getCatchPieceType();
+        this.promoted = hand.getPromoted();
+    }
 
-    public boolean isMove() {
+    public int getMove() {
         return this.move;
     }
-    public void setMove(boolean b) {
-        this.move = b;
+    public void setMove(int move) {
+        this.move = move;
     }
     public int getBefore() {
         return this.before;

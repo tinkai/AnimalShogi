@@ -1,10 +1,9 @@
 import java.util.Scanner;
-import java.util.ArrayList;
-import java.util.List;
 public class Director implements PieceID{
     private Player p1;
     private Player p2;
     private Board board;
+    private History history;
 
     Director() {
         this.p1 = new HumanPlayer(0);
@@ -14,6 +13,7 @@ public class Director implements PieceID{
         Scanner scanner = new Scanner(System.in);
         int turn = scanner.nextInt();
         if (turn == 1) this.board.changeTurn();
+        this.history = new History(this.board);
     }
 
     public void game() {
@@ -25,12 +25,14 @@ public class Director implements PieceID{
         this.board.showHasPiece();
         System.out.println();
         while(true) {
+            System.out.println(this.history.getHistory().size());
             this.board.showTurnN();
             this.board.showTurn();
             if (this.board.getTurn() == 0) playerTurn(this.p1);
             else if (this.board.getTurn() == 1) playerTurn(this.p2);
             this.board.showPosi();
             this.board.showHasPiece();
+            //this.history.show();
             System.out.println();
             if (isWin(this.board.getTurn())) break;
             this.board.changeTurn();        
@@ -38,25 +40,37 @@ public class Director implements PieceID{
         }
         showWinner();
     }
-
+    private void change(Player p) {
+        if (p == this.p1) p = this.p2;
+        else if (p == this.p2) p = this.p1;
+    }
     private void playerTurn(Player p) {
         while(true) {
             p.turn();   // 操作の入力
             Hand hand = p.getHand();
             int before = hand.getBefore();
             int after = hand.getAfter();
-            if (before == -1) {
+            if (hand.getMove() == -1) {
                 System.out.println("スペルあっとる？");
                 continue;
             }
-            /*if (p.getHand().getMove().equals("show")) {
+            if (hand.getMove() == 2 || hand.getMove() == 3 || hand.getMove() == 4) {
+                if (hand.getMove() == 3 || hand.getMove() == 4) {
+                    this.history.undo();
+                    change(p);
+                }
+                if (hand.getMove() == 4) {
+                    this.history.undo();
+                    change(p);
+                }
                 this.board.showPosi();
                 this.board.showHasPiece();
+                this.board.showTurnN();
                 this.board.showTurn();
                 continue;
-            }*/
+            }
             if (!decSasite(p)) continue;
-            if (hand.isMove()) {
+            if (hand.getMove() == 0) {
                 if (this.board.isAnemy(p.getGroup(), after)) { 
                     hand.setCatchPieceType(this.board.getPiece(after).getPieceType());
                     this.board.addHasPiece(p.getGroup(), this.board.getPiece(after).getPieceType());
@@ -64,20 +78,21 @@ public class Director implements PieceID{
                     hand.setCatchPieceType(0);
                 }
                 hand.setPieceNum(this.board.getPiece(before).getPieceType());
-                if (after%5 - 1 - 2*this.board.getTurn() == this.board.getTurn() && hand.getPieceNum() == HIYO) {   // AqR
+                if (after%5 - 1 - 2*this.board.getTurn() == this.board.getTurn() && hand.getPieceNum() == HIYO) {
                     hand.setPromoted(true);
-                    this.board.getPiece(after).promoted(); 
+                    this.board.getPiece(before).promoted(); 
                 } else {
                     hand.setPromoted(false);
                 }
                 this.board.movePiece(before, after);
                 break;
-            } else if (!hand.isMove()) {
+            } else if (hand.getMove() == 1) {
                 this.board.setPiece(p.getGroup(), hand.getPieceNum(), after);
                 this.board.subHasPiece(p.getGroup(), hand.getPieceNum());
                 break;
             }
         }
+        this.history.add(p.getHand());
     }
 
     private boolean decSasite(Player p) {
@@ -88,7 +103,7 @@ public class Director implements PieceID{
         Hand hand = p.getHand();
         int before = hand.getBefore();
         int after = hand.getAfter();
-        if (hand.isMove()) {
+        if (hand.getMove() == 0) {
             if (!this.board.isAlly(p.getGroup(), before)) {
                 System.out.println("自分の駒？");
                 return false;
@@ -99,7 +114,7 @@ public class Director implements PieceID{
                 System.out.println("移動先に味方がいますよ");
                 return false;
             }
-        } else if (!hand.isMove()) {
+        } else if (hand.getMove() == 0) {
             if (hand.getPieceNum() <= 0 || hand.getPieceNum() > HIYO) {
                 System.out.println("番号を間違えてませんか？");
                 return false;
@@ -117,7 +132,7 @@ public class Director implements PieceID{
         int after = p.getHand().getAfter();
         int before = p.getHand().getBefore();
         if (after < 0 || after > 25 || this.board.getPosi(after) == -1) return true;
-        if (p.getHand().isMove()) {
+        if (p.getHand().getMove() == 0) {
             if (before < 0 || before > 25 || this.board.getPosi(before) == -1) return true;
         } 
         return false;
