@@ -1,8 +1,8 @@
 public class Piece implements PieceID, PieceName, PieceControl {
     private int id;
     private String name;   
-    private int control[];  // åˆ©ã
-    private int group;  // å…ˆæ‰‹å¾Œæ‰‹ã©ã¡ã‚‰ã®æŒã¡é§’ã‹
+    private int control[];  // —˜‚«
+    private int group;  // æèŒãè‚Ç‚¿‚ç‚Ì‚¿‹î‚©
 
     Piece() {
     }
@@ -73,7 +73,7 @@ public class Piece implements PieceID, PieceName, PieceControl {
         return this.group;
     }
 
-    // ã‚³ãƒã®å¤‰åŒ–(ãƒ’ãƒ¨ã‚³ãƒ»ãƒ‹ãƒ¯ãƒˆãƒªç”¨)
+    // ƒRƒ}‚Ì•Ï‰»(ƒqƒˆƒREƒjƒƒgƒŠ—p)
     public void promoted() {
         this.id++;
         if (this.id == NIWA) {

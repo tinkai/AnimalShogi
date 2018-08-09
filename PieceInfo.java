@@ -1,4 +1,4 @@
-// ã‚³ãƒã®ç•ªå·
+// ƒRƒ}‚Ì”Ô†
 interface PieceID {
         int OUT = -1;
         int EMPTY = 0;
@@ -14,27 +14,27 @@ interface PieceID {
         int EHIYO = HIYO + ANEMY;
         int ENIWA = NIWA + ANEMY;
     }
-    // ã‚³ãƒã®åå‰
+    // ƒRƒ}‚Ì–¼‘O
     interface PieceName {
-        String RNAME = "â–³ãƒ©";
-        String KNAME = "â–³ã‚­";
-        String ZNAME = "â–³ã‚¾";
-        String HNAME = "â–³ãƒ’";
-        String NNAME = "â–³ãƒ‹";
-        String ERNAME = "â–¼ãƒ©";
-        String EKNAME = "â–¼ã‚­";
-        String EZNAME = "â–¼ã‚¾";
-        String EHNAME = "â–¼ãƒ’";
-        String ENNAME = "â–¼ãƒ‹";
+        String RNAME = "¢ƒ‰";
+        String KNAME = "¢ƒL";
+        String ZNAME = "¢ƒ]";
+        String HNAME = "¢ƒq";
+        String NNAME = "¢ƒj";
+        String ERNAME = "¥ƒ‰";
+        String EKNAME = "¥ƒL";
+        String EZNAME = "¥ƒ]";
+        String EHNAME = "¥ƒq";
+        String ENNAME = "¥ƒj";
     }
     interface PieceLongName {
-        String RLNAME = "ãƒ©ã‚¤ã‚ªãƒ³";
-        String KLNAME = "ã‚­ãƒªãƒ³";
-        String ZLNAME = "ã‚¾ã‚¦";
-        String HLNAME = "ãƒ’ãƒ¨ã‚³";
-        String NLNAME = "ãƒ‹ãƒ¯ãƒˆãƒª";
+        String RLNAME = "ƒ‰ƒCƒIƒ“";
+        String KLNAME = "ƒLƒŠƒ“";
+        String ZLNAME = "ƒ]ƒE";
+        String HLNAME = "ƒqƒˆƒR";
+        String NLNAME = "ƒjƒƒgƒŠ";
     }
-    // ã‚³ãƒã®åˆ©ã
+    // ƒRƒ}‚Ì—˜‚«
     interface PieceControl {
         int RCON[] = {-6, -5, -4, -1, 0, 1, 4, 5, 6};
         int KCON[] = {0, -5, 0, -1, 0, 1, 0, 5, 0};

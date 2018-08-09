@@ -17,7 +17,7 @@ public class Player {
 
     public void turn() {}
     
-    // 画面表示されている番地からデータ上の番地に変換
+    // ��ʕ\������Ă���Ԓn����f�[�^��̔Ԓn�ɕϊ�
     protected int changeOneDim(int x, int y) {
         return 5*x + y;
     }
