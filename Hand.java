@@ -60,4 +60,10 @@ public class Hand {
     public void setPromoted(boolean b) {
         this.promoted = b;
     }
+
+    public void handInfo() {
+        System.out.print(this.move + " " + this.before + " " + this.after + " " + this.pieceNum + " " + this.catchPieceType);
+        if (this.promoted) System.out.println(" y");
+        else System.out.println(" n");
+    }
 }
