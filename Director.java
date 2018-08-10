@@ -21,6 +21,8 @@ public class Director implements PieceID{
             p = new HumanPlayer(group); break;
         case 1:
             p = new RandomPlayer(group, this.board); break;
+        case 2:
+            p = new MonteCarloPlayer(group, this.board); break;
         default:
             System.out.println("値がおかしいです　Humanにしますね");
             p = new HumanPlayer(group);
@@ -36,11 +38,11 @@ public class Director implements PieceID{
         while(true) {
             if (this.board.getTurn() == 0) playerTurn(this.p1);
             else if (this.board.getTurn() == 1) playerTurn(this.p2);
-            if (isWin(this.board.getTurn())) break;    
+            if (isWinNoShow(this.board.getTurn())) break;    
             this.board.changeTurn();        
             this.board.addTurnN();        
         }
-        showWinner();
+        //showWinner();
     }
     public void game() {
         System.out.println("ゲームを開始します");
@@ -170,6 +172,11 @@ public class Director implements PieceID{
         return false;
     }
 
+    private boolean isWinNoShow(int turn) {
+        if (this.board.isHasPiece(turn, RION)) return true;
+        else if (isTry(turn)) return true;
+        return false;
+    }
     private boolean isWin(int turn) {
         if (this.board.isHasPiece(turn, RION)) {
             System.out.println("ライオンをとりました！");
