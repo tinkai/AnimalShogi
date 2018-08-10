@@ -1,8 +1,8 @@
 import java.util.List;
 import java.util.ArrayList;
 public class RandomPlayer extends Player implements PieceID {    
-    private Board board;
-    private List<Hand> handArray;
+    protected Board board;
+    protected List<Hand> handArray;
 
     RandomPlayer() {}
     RandomPlayer(int n, Board board) {
@@ -19,7 +19,7 @@ public class RandomPlayer extends Player implements PieceID {
         this.hand = this.handArray.get(rand);
     }
 
-    private void addMove() {
+    protected void addMove() {
         for (int x = 5; x <= 15; x += 5) {
             for (int y = 1; y <= 4; y++) {
                 if (this.board.isAlly(this.group, x+y)) {
@@ -39,12 +39,12 @@ public class RandomPlayer extends Player implements PieceID {
         }
     }
 
-    private boolean isOut(int posi) {
+    protected boolean isOut(int posi) {
         if (posi < 0 || posi > 25 || this.board.getPosi(posi) == -1) return true;
         return false;
     }
 
-    private void addDrop() {
+    protected void addDrop() {
         for (int n = KIRIN; n <= HIYO; n++) {
             if (this.board.isHasPiece(this.group, n)) {
                 for (int x = 5; x <= 15; x += 5) {
