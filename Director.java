@@ -5,23 +5,18 @@ public class Director implements PieceID{
     private Board board;
     private History history;
 
-    Director() {
+    Director() {}
+    Director(int p1, int p2, int turn) {
         this.board = new Board();
-        this.p1 = createNewPlayer(0);
-        this.p2 = createNewPlayer(1);
-        System.out.println("Player1の先手(0)後手(1)を選んでください");
-        Scanner scanner = new Scanner(System.in);
-        int turn = scanner.nextInt();
+        this.p1 = createNewPlayer(0, p1);
+        this.p2 = createNewPlayer(1, p2);
         if (turn == 1) this.board.changeTurn();
         this.history = new History(this.board);
     }
     
-    private Player createNewPlayer(int group) {
-        System.out.println("Player" + (group+1) + "を選んでください  0.Human, 1.Random, 2.MonteCarlo");
-        Scanner scanner = new Scanner(System.in);
-        int n = scanner.nextInt();
+    private Player createNewPlayer(int group, int player) {
         Player p;
-        switch (n) {
+        switch (player) {
         case 0:
             p = new HumanPlayer(group); break;
         case 1:
@@ -32,7 +27,21 @@ public class Director implements PieceID{
         }
         return p;
     }
+
+    public int getWinner() {
+        return this.board.getTurn();
+    }
     
+    public void noShowGame() {
+        while(true) {
+            if (this.board.getTurn() == 0) playerTurn(this.p1);
+            else if (this.board.getTurn() == 1) playerTurn(this.p2);
+            if (isWin(this.board.getTurn())) break;    
+            this.board.changeTurn();        
+            this.board.addTurnN();        
+        }
+        showWinner();
+    }
     public void game() {
         System.out.println("ゲームを開始します");
         System.out.println("初期盤面");
