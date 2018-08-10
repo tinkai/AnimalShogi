@@ -12,11 +12,9 @@ public class RandomPlayer extends Player implements PieceID {
     }
     
     public void turn() {
-        System.out.println("RandomPlayerのターン");
         this.handArray.clear();
         addMove();
         addDrop();
-        System.out.println(this.handArray.size());
         int rand = new java.util.Random().nextInt(this.handArray.size());
         this.hand = this.handArray.get(rand);
     }
@@ -49,7 +47,7 @@ public class RandomPlayer extends Player implements PieceID {
     private void addDrop() {
         for (int n = KIRIN; n <= HIYO; n++) {
             if (this.board.isHasPiece(this.group, n)) {
-                for (int x = 4; x <= 15; x += 5) {
+                for (int x = 5; x <= 15; x += 5) {
                     for (int y = 1; y <= 4; y++) {
                         if (!this.board.isPiece(x+y)) {
                             Hand addHand = new Hand(1, 0, x+y, n, 0, false);
