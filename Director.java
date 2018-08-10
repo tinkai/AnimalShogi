@@ -28,8 +28,13 @@ public class Director implements PieceID{
             System.out.println(this.history.getHistory().size());
             this.board.showTurnN();
             this.board.showTurn();
-            if (this.board.getTurn() == 0) playerTurn(this.p1);
-            else if (this.board.getTurn() == 1) playerTurn(this.p2);
+            if (this.board.getTurn() == 0) {
+                playerTurn(this.p1);
+                if (this.p1.getHand().getMove() == 3 || this.p1.getHand().getMove() == 4) continue;
+            } else if (this.board.getTurn() == 1) {
+                playerTurn(this.p2);
+                if (this.p2.getHand().getMove() == 3 || this.p2.getHand().getMove() == 4) continue;
+            }
             this.board.showPosi();
             this.board.showHasPiece();
             //this.history.show();
@@ -40,10 +45,7 @@ public class Director implements PieceID{
         }
         showWinner();
     }
-    private void change(Player p) {
-        if (p == this.p1) p = this.p2;
-        else if (p == this.p2) p = this.p1;
-    }
+
     private void playerTurn(Player p) {
         while(true) {
             p.turn();   // 操作の入力
@@ -54,20 +56,25 @@ public class Director implements PieceID{
                 System.out.println("スペルあっとる？");
                 continue;
             }
-            if (hand.getMove() == 2 || hand.getMove() == 3 || hand.getMove() == 4) {
-                if (hand.getMove() == 3 || hand.getMove() == 4) {
-                    this.history.undo();
-                    change(p);
-                }
-                if (hand.getMove() == 4) {
-                    this.history.undo();
-                    change(p);
-                }
+            if (hand.getMove() == 2) {
                 this.board.showPosi();
                 this.board.showHasPiece();
                 this.board.showTurnN();
                 this.board.showTurn();
                 continue;
+            }
+            if (hand.getMove() == 3) {
+                this.history.undo();
+                this.board.showPosi();
+                this.board.showHasPiece();
+                return;
+            }
+            if (hand.getMove() == 4) {
+                this.history.undo();
+                this.history.undo();
+                this.board.showPosi();
+                this.board.showHasPiece();
+                return;
             }
             if (!decSasite(p)) continue;
             if (hand.getMove() == 0) {
