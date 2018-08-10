@@ -6,9 +6,10 @@ public class Director implements PieceID{
     private History history;
 
     Director() {
-        this.p1 = new HumanPlayer(0);
-        this.p2 = new HumanPlayer(1);
         this.board = new Board();
+        this.p1 = new HumanPlayer(0);
+//        this.p2 = new HumanPlayer(1);
+        this.p2 = new RandomPlayer(1, this.board); 
         System.out.println("Player1の先手(0)後手(1)を選んでください");
         Scanner scanner = new Scanner(System.in);
         int turn = scanner.nextInt();
