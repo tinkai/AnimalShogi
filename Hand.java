@@ -15,6 +15,14 @@ public class Hand {
         this.catchPieceType = hand.getCatchPieceType();
         this.promoted = hand.getPromoted();
     }
+    Hand(int move, int before, int after, int pieceNum, int catchPieceType, boolean promoted) {
+        this.move = move;
+        this.before = before;
+        this.after = after;
+        this.pieceNum = pieceNum;
+        this.catchPieceType = catchPieceType;
+        this.promoted = promoted;
+    }
 
     public int getMove() {
         return this.move;
