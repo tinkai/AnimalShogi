@@ -8,7 +8,7 @@ public class AnimalShogi {
         int p1 = scanner.nextInt();
         System.out.println("Player2を選んでください  0.Human, 1.Random, 2.MonteCarlo");
         int p2 = scanner.nextInt();
-        System.out.println("Player1の先手(0)後手(1)を選んでください");
+        System.out.println("Player1の先手(0)後手(1)ランダム(2)を選んでください");
         int turn = scanner.nextInt();
         int n;
         boolean show = true;
@@ -24,7 +24,9 @@ public class AnimalShogi {
         int p1Vic = 0;
         int p2Vic = 0;
         while (n-- > 0) {
-            Director director = new Director(p1, p2, turn);
+            Director director;
+            if (turn == 2) director = new Director(p1, p2, new java.util.Random().nextInt(2));
+            else director = new Director(p1, p2, turn);
             if (show) director.game();
             else director.noShowGame();
             if (director.getWinner() == 0) p1Vic++;
