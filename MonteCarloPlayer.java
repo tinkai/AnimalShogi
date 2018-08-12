@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class MonteCarloPlayer extends RandomPlayer implements PieceID {
     private List<Integer> winN;
     private History history;
-    private final int tryN = 500;
+    private final int tryN = 1000;
     private boolean win;
 
     MonteCarloPlayer() {}
@@ -34,6 +34,8 @@ public class MonteCarloPlayer extends RandomPlayer implements PieceID {
             if (isWin(this.group)) {
                 this.winN.set(rand, this.winN.get(rand)+1);
                 this.win = false;
+                this.board.changeTurn();
+                this.board.addTurnN();
                 this.history.undo(); 
                 continue;
             }
