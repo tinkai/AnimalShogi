@@ -43,6 +43,7 @@ public class Director implements PieceID{
             this.board.addTurnN();        
         }
         //showWinner();
+        //this.board.showTurnN();
     }
     public void game() {
         System.out.println("ゲームを開始します");
